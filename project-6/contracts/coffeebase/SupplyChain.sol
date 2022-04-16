@@ -136,7 +136,7 @@ contract SupplyChain {
     // In the constructor set 'owner' to the address that instantiated the contract
     // and set 'sku' to 1
     // and set 'upc' to 1
-    constructor() public payable {
+    constructor() payable {
         owner = msg.sender;
         sku = 1;
         upc = 1;
