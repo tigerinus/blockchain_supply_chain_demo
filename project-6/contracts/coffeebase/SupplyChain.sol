@@ -160,10 +160,27 @@ contract SupplyChain {
         string memory _productNotes
     ) public {
         // Add the new item as part of Harvest
-
+        items[_upc] = Item(
+            sku,
+            _upc,
+            _originFarmerID,
+            _originFarmerID,
+            _originFarmName,
+            _originFarmInformation,
+            _originFarmLatitude,
+            _originFarmLongitude,
+            upc * 2 ** 128 + sku,
+            _productNotes,
+            0,
+            defaultState,
+            address(0),
+            address(0),
+            address(0)
+        );
         // Increment sku
         sku = sku + 1;
         // Emit the appropriate event
+        emit Harvested(_upc);
     }
 
     // Define a function 'processtItem' that allows a farmer to mark an item 'Processed'
@@ -273,7 +290,16 @@ contract SupplyChain {
         )
     {
         // Assign values to the 8 parameters
-
+        Item memory item = items[_upc];
+        itemSKU = item.sku;
+        itemUPC = item.upc;
+        ownerID = item.ownerID;
+        originFarmerID = item.originFarmerID;
+        originFarmName = item.originFarmName;
+        originFarmInformation = item.originFarmInformation;
+        originFarmLatitude = item.originFarmLatitude;
+        originFarmLongitude = item.originFarmLongitude;
+    
         return (
             itemSKU,
             itemUPC,
@@ -296,13 +322,23 @@ contract SupplyChain {
             uint256 productID,
             string memory productNotes,
             uint256 productPrice,
-            uint256 itemState,
+            State itemState,
             address distributorID,
             address retailerID,
             address consumerID
         )
     {
         // Assign values to the 9 parameters
+        Item memory item = items[_upc];
+        itemSKU = item.sku;
+        itemUPC = item.upc;
+        productID = item.productID;
+        productNotes = item.productNotes;
+        productPrice = item.productPrice;
+        itemState = item.itemState;
+        distributorID = item.distributorID;
+        retailerID = item.retailerID;
+        consumerID = item.consumerID;
 
         return (
             itemSKU,

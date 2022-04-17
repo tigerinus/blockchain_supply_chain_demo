@@ -45,22 +45,8 @@ contract('SupplyChain', function (accounts) {
   it("Testing smart contract function harvestItem() that allows a farmer to harvest coffee", async () => {
     const supplyChain = await SupplyChain.deployed()
 
-    // Declare and Initialize a variable for event
-    var eventEmitted = false
-
-    // Watch the emitted event Harvested()
-    await supplyChain.Harvested(null, (err, res) => {
-      if (err) {
-        console.log("error (location 1): ", err)
-        return
-      }
-      console.log("event: (location 1)", res)
-      eventEmitted = true
-    })
-
-
     // Mark an item as Harvested by calling function harvestItem()
-    await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, originFarmLatitude, originFarmLongitude, productNotes)
+    const result = await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, originFarmLatitude, originFarmLongitude, productNotes)
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
     const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
@@ -76,7 +62,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(resultBufferOne[6], originFarmLatitude, 'Error: Missing or Invalid originFarmLatitude')
     assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude')
     assert.equal(resultBufferTwo[5], 0, 'Error: Invalid item State')
-    assert.equal(eventEmitted, true, 'Invalid event emitted')
+    assert.equal(result.logs[0].event, 'Harvested', 'Error: Invalid event name')
   })
 
   // 2nd Test
