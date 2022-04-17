@@ -1,3 +1,5 @@
+// var contract = require("@truffle/contract");
+
 App = {
     web3Provider: null,
     contracts: {},
@@ -175,13 +177,14 @@ App = {
                 App.originFarmInformation, 
                 App.originFarmLatitude, 
                 App.originFarmLongitude, 
-                App.productNotes
+                App.productNotes,
+                {from: App.metamaskAccountID}
             );
         }).then(function(result) {
             $("#ftc-item").text(result);
             console.log('harvestItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
 
@@ -195,7 +198,7 @@ App = {
             $("#ftc-item").text(result);
             console.log('processItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
     
@@ -209,7 +212,7 @@ App = {
             $("#ftc-item").text(result);
             console.log('packItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
 
@@ -225,7 +228,7 @@ App = {
             $("#ftc-item").text(result);
             console.log('sellItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
 
@@ -240,7 +243,7 @@ App = {
             $("#ftc-item").text(result);
             console.log('buyItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
 
@@ -254,7 +257,7 @@ App = {
             $("#ftc-item").text(result);
             console.log('shipItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
 
@@ -268,7 +271,7 @@ App = {
             $("#ftc-item").text(result);
             console.log('receiveItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
 
@@ -282,7 +285,7 @@ App = {
             $("#ftc-item").text(result);
             console.log('purchaseItem',result);
         }).catch(function(err) {
-            console.log(err.message);
+            console.log(err);
         });
     },
 
@@ -298,7 +301,7 @@ App = {
           $("#ftc-item").text(result);
           console.log('fetchItemBufferOne', result);
         }).catch(function(err) {
-          console.log(err.message);
+          console.log(err);
         });
     },
 
@@ -312,7 +315,7 @@ App = {
           $("#ftc-item").text(result);
           console.log('fetchItemBufferTwo', result);
         }).catch(function(err) {
-          console.log(err.message);
+          console.log(err);
         });
     },
 
@@ -332,7 +335,7 @@ App = {
             $("#ftc-events").append('<li>' + log.event + ' - ' + log.transactionHash + '</li>');
         });
         }).catch(function(err) {
-          console.log(err.message);
+          console.log(err);
         });
         
     }
