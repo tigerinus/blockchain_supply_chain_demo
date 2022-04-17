@@ -1,4 +1,4 @@
-// var contract = require("@truffle/contract");
+var contract = require("@truffle/contract");
 
 App = {
     web3Provider: null,
