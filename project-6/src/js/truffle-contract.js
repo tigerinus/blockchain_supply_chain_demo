@@ -25,7 +25,7 @@ var contract = (function(module) {
     return this.provider.sendAsync.apply(this.provider, arguments);
   };
 
-  var BigNumber = (new Web3()).toBigNumber(0).constructor;
+  var BigNumber = (new Web3()).utils.toBN;
 
   var Utils = {
     is_object: function(val) {
@@ -483,7 +483,7 @@ var contract = (function(module) {
           }
         }
 
-        self.web3.version.getNetwork(function(err, result) {
+        self.web3.eth.net.getId(function(err, result) {
           if (err) return reject(err);
 
           var network_id = result.toString();
