@@ -167,7 +167,7 @@ contract SupplyChain is
         string memory _originFarmLatitude,
         string memory _originFarmLongitude,
         string memory _productNotes
-    ) public {
+    ) public onlyFarmer {
         // Add the new item as part of Harvest
         items[_upc] = Item(
             sku,
@@ -195,6 +195,7 @@ contract SupplyChain is
     // Define a function 'processtItem' that allows a farmer to mark an item 'Processed'
     function processItem(uint256 _upc)
         public
+        onlyFarmer
     // Call modifier to check if upc has passed previous supply chain stage
 
     // Call modifier to verify caller of this function
@@ -207,6 +208,7 @@ contract SupplyChain is
     // Define a function 'packItem' that allows a farmer to mark an item 'Packed'
     function packItem(uint256 _upc)
         public
+        onlyFarmer
     // Call modifier to check if upc has passed previous supply chain stage
 
     // Call modifier to verify caller of this function
@@ -219,6 +221,7 @@ contract SupplyChain is
     // Define a function 'sellItem' that allows a farmer to mark an item 'ForSale'
     function sellItem(uint256 _upc, uint256 _price)
         public
+        onlyFarmer
     // Call modifier to check if upc has passed previous supply chain stage
 
     // Call modifier to verify caller of this function
@@ -229,11 +232,12 @@ contract SupplyChain is
     }
 
     // Define a function 'buyItem' that allows the disributor to mark an item 'Sold'
-    // Use the above defined modifiers to check if the item is available for sale, if the buyer has paid enough,
+    // @todo Use the above defined modifiers to check if the item is available for sale, if the buyer has paid enough,
     // and any excess ether sent is refunded back to the buyer
     function buyItem(uint256 _upc)
         public
         payable
+        onlyDistributor
     // Call modifier to check if upc has passed previous supply chain stage
 
     // Call modifer to check if buyer has paid enough
@@ -247,9 +251,10 @@ contract SupplyChain is
     }
 
     // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
-    // Use the above modifers to check if the item is sold
+    // @todo Use the above modifers to check if the item is sold
     function shipItem(uint256 _upc)
         public
+        onlyDistributor
     // Call modifier to check if upc has passed previous supply chain stage
 
     // Call modifier to verify caller of this function
@@ -260,9 +265,10 @@ contract SupplyChain is
     }
 
     // Define a function 'receiveItem' that allows the retailer to mark an item 'Received'
-    // Use the above modifiers to check if the item is shipped
+    // @todo Use the above modifiers to check if the item is shipped
     function receiveItem(uint256 _upc)
         public
+        onlyRetailer
     // Call modifier to check if upc has passed previous supply chain stage
 
     // Access Control List enforced by calling Smart Contract / DApp
@@ -272,9 +278,9 @@ contract SupplyChain is
     }
 
     // Define a function 'purchaseItem' that allows the consumer to mark an item 'Purchased'
-    // Use the above modifiers to check if the item is received
+    // @todo Use the above modifiers to check if the item is received
     function purchaseItem(uint256 _upc)
-        public
+        public onlyConsumer
     // Call modifier to check if upc has passed previous supply chain stage
 
     // Access Control List enforced by calling Smart Contract / DApp
