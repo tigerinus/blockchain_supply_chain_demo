@@ -107,38 +107,45 @@ contract SupplyChain is
         _;
     }
 
-    // @todo Define a modifier that checks if an item.state of a upc is Processed
+    // Define a modifier that checks if an item.state of a upc is Processed
     modifier processed(uint256 _upc) {
+        require(items[_upc].itemState == State.Processed);
         _;
     }
 
-    // @todo Define a modifier that checks if an item.state of a upc is Packed
+    // Define a modifier that checks if an item.state of a upc is Packed
     modifier packed(uint256 _upc) {
+        require(items[_upc].itemState == State.Packed);
         _;
     }
 
-    // @todo Define a modifier that checks if an item.state of a upc is ForSale
+    // Define a modifier that checks if an item.state of a upc is ForSale
     modifier forSale(uint256 _upc) {
+        require(items[_upc].itemState == State.ForSale);
         _;
     }
 
-    // @todo Define a modifier that checks if an item.state of a upc is Sold
+    // Define a modifier that checks if an item.state of a upc is Sold
     modifier sold(uint256 _upc) {
+        require(items[_upc].itemState == State.Sold);
         _;
     }
 
-    // @todo Define a modifier that checks if an item.state of a upc is Shipped
+    // Define a modifier that checks if an item.state of a upc is Shipped
     modifier shipped(uint256 _upc) {
+        require(items[_upc].itemState == State.Shipped);
         _;
     }
 
-    // @todo Define a modifier that checks if an item.state of a upc is Received
+    // Define a modifier that checks if an item.state of a upc is Received
     modifier received(uint256 _upc) {
+        require(items[_upc].itemState == State.Received);
         _;
     }
 
-    // @todo Define a modifier that checks if an item.state of a upc is Purchased
+    // Define a modifier that checks if an item.state of a upc is Purchased
     modifier purchased(uint256 _upc) {
+        require(items[_upc].itemState == State.Purchased);
         _;
     }
 
