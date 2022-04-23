@@ -202,11 +202,8 @@ contract SupplyChain is
     // Define a function 'processtItem' that allows a farmer to mark an item 'Processed'
     function processItem(uint256 _upc)
         public
-        onlyFarmer
-    // @todo Call modifier to check if upc has passed previous supply chain stage
-
-    // @todo Call modifier to verify caller of this function
-
+        processed(_upc) // Call modifier to check if upc has passed previous supply chain stage
+        onlyFarmer // Call modifier to verify caller of this function
     {
         // @todo Update the appropriate fields
         // @todo Emit the appropriate event
@@ -215,11 +212,8 @@ contract SupplyChain is
     // Define a function 'packItem' that allows a farmer to mark an item 'Packed'
     function packItem(uint256 _upc)
         public
-        onlyFarmer
-    // @todo Call modifier to check if upc has passed previous supply chain stage
-
-    // @todo Call modifier to verify caller of this function
-
+        // @todo Call modifier to check if upc has passed previous supply chain stage
+        onlyFarmer // Call modifier to verify caller of this function
     {
         // @todo Update the appropriate fields
         // @todo Emit the appropriate event
@@ -228,11 +222,8 @@ contract SupplyChain is
     // Define a function 'sellItem' that allows a farmer to mark an item 'ForSale'
     function sellItem(uint256 _upc, uint256 _price)
         public
-        onlyFarmer
-    // @todo Call modifier to check if upc has passed previous supply chain stage
-
-    // @todo Call modifier to verify caller of this function
-
+        // @todo Call modifier to check if upc has passed previous supply chain stage
+        onlyFarmer // Call modifier to verify caller of this function
     {
         // @todo Update the appropriate fields
         // @todo Emit the appropriate event
@@ -261,11 +252,8 @@ contract SupplyChain is
     // @todo Use the above modifers to check if the item is sold
     function shipItem(uint256 _upc)
         public
-        onlyDistributor
-    // @todo Call modifier to check if upc has passed previous supply chain stage
-
-    // @todo Call modifier to verify caller of this function
-
+        // @todo Call modifier to check if upc has passed previous supply chain stage
+        onlyDistributor // Call modifier to verify caller of this function
     {
         // @todo Update the appropriate fields
         // @todo Emit the appropriate event
@@ -277,7 +265,6 @@ contract SupplyChain is
         public
         onlyRetailer
     // @todo Call modifier to check if upc has passed previous supply chain stage
-
     // @todo Access Control List enforced by calling Smart Contract / DApp
     {
         // @todo Update the appropriate fields - ownerID, retailerID, itemState
@@ -290,7 +277,6 @@ contract SupplyChain is
         public
         onlyConsumer
     // @todo Call modifier to check if upc has passed previous supply chain stage
-
     // @todo Access Control List enforced by calling Smart Contract / DApp
     {
         // @todo Update the appropriate fields - ownerID, consumerID, itemState
