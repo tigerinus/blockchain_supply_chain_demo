@@ -9,8 +9,12 @@ import "../coffeeaccesscontrol/RetailerRole.sol";
 import "../Utils.sol";
 
 // Define a contract 'Supplychain'
-contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
-
+contract SupplyChain is
+    ConsumerRole,
+    DistributorRole,
+    FarmerRole,
+    RetailerRole
+{
     // Define 'owner'
     address owner;
 
@@ -93,7 +97,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
         _;
         uint256 _price = items[_upc].productPrice;
         uint256 amountToReturn = msg.value - _price;
-        
+
         Utils.make_payable(items[_upc].consumerID).transfer(amountToReturn);
     }
 
@@ -174,7 +178,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
             _originFarmInformation,
             _originFarmLatitude,
             _originFarmLongitude,
-            upc * 2 ** 128 + sku,
+            upc * 2**128 + sku,
             _productNotes,
             0,
             defaultState,
@@ -304,7 +308,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
         originFarmInformation = item.originFarmInformation;
         originFarmLatitude = item.originFarmLatitude;
         originFarmLongitude = item.originFarmLongitude;
-    
+
         return (
             itemSKU,
             itemUPC,

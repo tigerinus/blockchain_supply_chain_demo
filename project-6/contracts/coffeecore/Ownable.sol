@@ -5,12 +5,11 @@ import "../coffeebase/SupplyChain.sol";
 
 /// Provides basic authorization control
 contract Ownable is SupplyChain {
-
     // Define an Event
     event TransferOwnership(address indexed oldOwner, address indexed newOwner);
 
     /// Assign the contract to an owner
-    constructor () {
+    constructor() {
         emit TransferOwnership(address(0), owner);
     }
 
