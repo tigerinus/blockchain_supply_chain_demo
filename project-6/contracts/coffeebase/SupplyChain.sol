@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./Utils.sol";
+import "../Utils.sol";
 
 // Define a contract 'Supplychain'
 contract SupplyChain {
