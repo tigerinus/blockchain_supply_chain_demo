@@ -107,37 +107,37 @@ contract SupplyChain is
         _;
     }
 
-    // Define a modifier that checks if an item.state of a upc is Processed
+    // @todo Define a modifier that checks if an item.state of a upc is Processed
     modifier processed(uint256 _upc) {
         _;
     }
 
-    // Define a modifier that checks if an item.state of a upc is Packed
+    // @todo Define a modifier that checks if an item.state of a upc is Packed
     modifier packed(uint256 _upc) {
         _;
     }
 
-    // Define a modifier that checks if an item.state of a upc is ForSale
+    // @todo Define a modifier that checks if an item.state of a upc is ForSale
     modifier forSale(uint256 _upc) {
         _;
     }
 
-    // Define a modifier that checks if an item.state of a upc is Sold
+    // @todo Define a modifier that checks if an item.state of a upc is Sold
     modifier sold(uint256 _upc) {
         _;
     }
 
-    // Define a modifier that checks if an item.state of a upc is Shipped
+    // @todo Define a modifier that checks if an item.state of a upc is Shipped
     modifier shipped(uint256 _upc) {
         _;
     }
 
-    // Define a modifier that checks if an item.state of a upc is Received
+    // @todo Define a modifier that checks if an item.state of a upc is Received
     modifier received(uint256 _upc) {
         _;
     }
 
-    // Define a modifier that checks if an item.state of a upc is Purchased
+    // @todo Define a modifier that checks if an item.state of a upc is Purchased
     modifier purchased(uint256 _upc) {
         _;
     }
@@ -196,39 +196,39 @@ contract SupplyChain is
     function processItem(uint256 _upc)
         public
         onlyFarmer
-    // Call modifier to check if upc has passed previous supply chain stage
+    // @todo Call modifier to check if upc has passed previous supply chain stage
 
-    // Call modifier to verify caller of this function
+    // @todo Call modifier to verify caller of this function
 
     {
-        // Update the appropriate fields
-        // Emit the appropriate event
+        // @todo Update the appropriate fields
+        // @todo Emit the appropriate event
     }
 
     // Define a function 'packItem' that allows a farmer to mark an item 'Packed'
     function packItem(uint256 _upc)
         public
         onlyFarmer
-    // Call modifier to check if upc has passed previous supply chain stage
+    // @todo Call modifier to check if upc has passed previous supply chain stage
 
-    // Call modifier to verify caller of this function
+    // @todo Call modifier to verify caller of this function
 
     {
-        // Update the appropriate fields
-        // Emit the appropriate event
+        // @todo Update the appropriate fields
+        // @todo Emit the appropriate event
     }
 
     // Define a function 'sellItem' that allows a farmer to mark an item 'ForSale'
     function sellItem(uint256 _upc, uint256 _price)
         public
         onlyFarmer
-    // Call modifier to check if upc has passed previous supply chain stage
+    // @todo Call modifier to check if upc has passed previous supply chain stage
 
-    // Call modifier to verify caller of this function
+    // @todo Call modifier to verify caller of this function
 
     {
-        // Update the appropriate fields
-        // Emit the appropriate event
+        // @todo Update the appropriate fields
+        // @todo Emit the appropriate event
     }
 
     // Define a function 'buyItem' that allows the disributor to mark an item 'Sold'
@@ -238,16 +238,16 @@ contract SupplyChain is
         public
         payable
         onlyDistributor
-    // Call modifier to check if upc has passed previous supply chain stage
+    // @todo Call modifier to check if upc has passed previous supply chain stage
 
-    // Call modifer to check if buyer has paid enough
+    // @todo Call modifer to check if buyer has paid enough
 
-    // Call modifer to send any excess ether back to buyer
+    // @todo Call modifer to send any excess ether back to buyer
 
     {
-        // Update the appropriate fields - ownerID, distributorID, itemState
-        // Transfer money to farmer
-        // emit the appropriate event
+        // @todo Update the appropriate fields - ownerID, distributorID, itemState
+        // @todo Transfer money to farmer
+        // @todo emit the appropriate event
     }
 
     // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
@@ -255,13 +255,13 @@ contract SupplyChain is
     function shipItem(uint256 _upc)
         public
         onlyDistributor
-    // Call modifier to check if upc has passed previous supply chain stage
+    // @todo Call modifier to check if upc has passed previous supply chain stage
 
-    // Call modifier to verify caller of this function
+    // @todo Call modifier to verify caller of this function
 
     {
-        // Update the appropriate fields
-        // Emit the appropriate event
+        // @todo Update the appropriate fields
+        // @todo Emit the appropriate event
     }
 
     // Define a function 'receiveItem' that allows the retailer to mark an item 'Received'
@@ -269,24 +269,25 @@ contract SupplyChain is
     function receiveItem(uint256 _upc)
         public
         onlyRetailer
-    // Call modifier to check if upc has passed previous supply chain stage
+    // @todo Call modifier to check if upc has passed previous supply chain stage
 
-    // Access Control List enforced by calling Smart Contract / DApp
+    // @todo Access Control List enforced by calling Smart Contract / DApp
     {
-        // Update the appropriate fields - ownerID, retailerID, itemState
-        // Emit the appropriate event
+        // @todo Update the appropriate fields - ownerID, retailerID, itemState
+        // @todo Emit the appropriate event
     }
 
     // Define a function 'purchaseItem' that allows the consumer to mark an item 'Purchased'
     // @todo Use the above modifiers to check if the item is received
     function purchaseItem(uint256 _upc)
-        public onlyConsumer
-    // Call modifier to check if upc has passed previous supply chain stage
+        public
+        onlyConsumer
+    // @todo Call modifier to check if upc has passed previous supply chain stage
 
-    // Access Control List enforced by calling Smart Contract / DApp
+    // @todo Access Control List enforced by calling Smart Contract / DApp
     {
-        // Update the appropriate fields - ownerID, consumerID, itemState
-        // Emit the appropriate event
+        // @todo Update the appropriate fields - ownerID, consumerID, itemState
+        // @todo Emit the appropriate event
     }
 
     // Define a function 'fetchItemBufferOne' that fetches the data
