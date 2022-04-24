@@ -298,8 +298,11 @@ contract SupplyChain is
     // Use the above modifiers to check if the item is received
     function purchaseItem(uint256 _upc)
         public
+        payable
         received(_upc) // Call modifier to check if upc has passed previous supply chain stage
         onlyConsumer // Access Control List enforced by calling Smart Contract / DApp
+        paidEnough(items[_upc].productPrice) // Call modifer to check if buyer has paid enough
+        checkValue(_upc) // Call modifer to send any excess ether back to buyer
     {
         // Update the appropriate fields - ownerID, consumerID, itemState
         items[_upc].itemState = State.Purchased;
