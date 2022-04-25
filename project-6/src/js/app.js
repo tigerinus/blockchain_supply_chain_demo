@@ -1,6 +1,7 @@
 var contract = require("@truffle/contract");
 
 App = {
+    web3: null,
     web3Provider: null,
     contracts: {},
     emptyAddress: "0x0000000000000000000000000000000000000000",
@@ -82,16 +83,15 @@ App = {
             App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
         }
 
+        App.web3 = new Web3(App.web3Provider);
         App.getMetaskAccountID();
 
         return App.initSupplyChain();
     },
 
     getMetaskAccountID: function () {
-        const web3 = new Web3(App.web3Provider);
-
         // Retrieving accounts
-        web3.eth.getAccounts(function(err, res) {
+        App.web3.eth.getAccounts(function(err, res) {
             if (err) {
                 console.log('Error:',err);
                 return;
@@ -214,7 +214,7 @@ App = {
         var processId = parseInt($(event.target).data('id'));
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
-            const productPrice = web3.utils.toWei("0.0001", "ether");
+            const productPrice = App.web3.utils.toWei("0.0001", "ether");
             console.log('productPrice',productPrice);
             return instance.sellItem(App.upc, App.productPrice, {from: App.metamaskAccountID});
         }).then(function(result) {
@@ -230,7 +230,7 @@ App = {
         var processId = parseInt($(event.target).data('id'));
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
-            const walletValue = web3.utils.toWei("0.0003", "ether");
+            const walletValue = App.web3.utils.toWei("0.0003", "ether");
             return instance.buyItem(App.upc, {from: App.metamaskAccountID, value: walletValue});
         }).then(function(result) {
             $("#ftc-item").text(result);
