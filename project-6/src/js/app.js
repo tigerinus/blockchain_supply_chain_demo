@@ -22,7 +22,7 @@ App = {
     init: async function () {
         App.readForm();
         /// Setup access to blockchain
-        return await App.initWeb3();
+        return App.initWeb3();
     },
 
     readForm: function () {
@@ -64,7 +64,10 @@ App = {
             App.web3Provider = window.ethereum;
             try {
                 // Request account access
-                await window.ethereum.enable();
+                //await window.ethereum.enable();
+                const addresses = await App.web3Provider.request({ method: "eth_requestAccounts" });
+                console.log("addresses", addresses);
+
             } catch (error) {
                 // User denied account access...
                 console.error("User denied account access")
@@ -85,7 +88,7 @@ App = {
     },
 
     getMetaskAccountID: function () {
-        web3 = new Web3(App.web3Provider);
+        const web3 = new Web3(App.web3Provider);
 
         // Retrieving accounts
         web3.eth.getAccounts(function(err, res) {
@@ -133,35 +136,25 @@ App = {
 
         switch(processId) {
             case 1:
-                return await App.harvestItem(event);
-                break;
+                return App.harvestItem(event);
             case 2:
-                return await App.processItem(event);
-                break;
+                return App.processItem(event);
             case 3:
-                return await App.packItem(event);
-                break;
+                return App.packItem(event);
             case 4:
-                return await App.sellItem(event);
-                break;
+                return App.sellItem(event);
             case 5:
-                return await App.buyItem(event);
-                break;
+                return App.buyItem(event);
             case 6:
-                return await App.shipItem(event);
-                break;
+                return App.shipItem(event);
             case 7:
-                return await App.receiveItem(event);
-                break;
+                return App.receiveItem(event);
             case 8:
-                return await App.purchaseItem(event);
-                break;
+                return App.purchaseItem(event);
             case 9:
-                return await App.fetchItemBufferOne(event);
-                break;
+                return App.fetchItemBufferOne(event);
             case 10:
-                return await App.fetchItemBufferTwo(event);
-                break;
+                return App.fetchItemBufferTwo(event);
             }
     },
 

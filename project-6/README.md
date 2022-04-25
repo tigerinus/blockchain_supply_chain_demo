@@ -1,5 +1,14 @@
 # Supply Chain Item Tracking dApp
 
+## Build
+
+### dApp
+
+```bash
+browserify src/js/app.js -o src/js/bundle.js
+npm run dev
+```
+
 ## Contracts
 
 ### Rinkeby
