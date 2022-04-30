@@ -305,6 +305,11 @@ contract SupplyChain is
         items[_upc].ownerID = msg.sender;
         items[_upc].consumerID = msg.sender;
 
+        // Transfer money to farmer
+        Utils.make_payable(items[_upc].retailerID).transfer(
+            items[_upc].productPrice
+        );
+
         // Emit the appropriate event
         emit Purchased(_upc);
     }

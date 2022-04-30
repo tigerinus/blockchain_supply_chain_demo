@@ -1,0 +1,10 @@
+@startuml sequence
+farmer -> farmer: harvest
+farmer -> farmer: process
+farmer -> farmer: pack
+farmer -> farmer: sell
+distributor -> farmer: buy
+farmer -> retailer: ship
+retailer -> farmer: receive
+consumer -> retailer: purchase
+@enduml
