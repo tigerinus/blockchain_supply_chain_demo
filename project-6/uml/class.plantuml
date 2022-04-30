@@ -1,0 +1,213 @@
+@startuml class
+
+abstract class Roles {
+    -- functions --
+    .. internal ..
+    ~ add(Role, address)
+    ~ remove(Role, address)
+    ~ has(Role, address): bool
+}
+
+entity Role {
+    + bearer: mapping(address => bool)
+}
+
+
+class ConsumerRole  {
+    -- events --
+    + ConsumerAdded(address)
+    + ConsumerRemoved(address)
+
+    -- modifiers --
+    + onlyConsumer()
+
+    -- properties --
+    - consumers: Roles.Role
+
+    -- functions --
+    + isConsumer(address): bool
+    + addConsumer(address) onlyConsumer
+    + renounceConsumer()
+
+    ~ _addConsumer(address)
+    ~ _removeConsumer(address)
+}
+
+class DistributorRole  {
+    -- events --
+    + DistributorAdded(address)
+    + DistributorRemoved(address)
+
+    -- modifiers --
+    + onlyDistributor()
+
+    -- properties --
+    - distributors: Roles.Role
+
+    -- functions --
+    + isDistributor(address): bool
+    + addDistributor(address) onlyDistributor
+    + renounceDistributor()
+
+    ~ _addDistributor(address)
+    ~ _removeDistributor(address)
+}
+
+class FarmerRole  {
+    -- events --
+    + FarmerAdded(address)
+    + FarmerRemoved(address)
+
+    -- modifiers --
+    + onlyFarmer()
+
+    -- properties --
+    - farmers: Roles.Role
+
+    -- functions --
+    + isFarmer(address): bool
+    + addFarmer(address) onlyFarmer
+    + renounceFarmer()
+
+    ~ _addFarmer(address)
+    ~ _removeFarmer(address)
+}
+
+class RetailerRole  {
+    -- events --
+    + RetailerAdded(address)
+    + RetailerRemoved(address)
+
+    -- modifiers --
+    + onlyRetailer()
+
+    -- properties --
+    - retailers: Roles.Role
+
+    -- functions --
+    + isRetailer(address): bool
+    + addRetailer(address) onlyRetailer
+    + renounceRetailer()
+
+    ~ _addRetailer(address)
+    ~ _removeRetailer(address)
+}
+
+class Ownable {
+    -- events --
+    + TransferOwnership(address, address)
+
+    -- modifiers --
+    + onlyOwner()
+
+    -- properties --
+    - origOwner: address
+
+    -- functions --
+    + owner(): address
+    + isOwner(): address
+    + renounceOwnership() onlyOwner
+    + transferOwnership(address) onlyOwner
+
+    ~ _transferOwnership(address)
+}
+
+enum State {
+    + Harvested
+    + Processed
+    + Packed
+    + ForSale
+    + Sold
+    + Shipped
+    + Received
+    + Purchased
+}
+
+entity Item {
+    + sku：uint256
+    + upc：uint256
+    + ownerID：address
+    + originFarmerID：address
+    + originFarmName：string
+    + originFarmInformation：string
+    + originFarmLatitude：string
+    + originFarmLongitude：string
+    + productID：uint256
+    + productNotes：string
+    + productPrice：uint256
+    + itemState：State
+    + distributorID：address
+    + retailerID：address
+    + consumerID：address
+}
+
+class SupplyChain {
+    --events--
+    + Harvested(uint256）
+    + Processed(uint256）
+    + Packed(uint256）
+    + ForSale(uint256）
+    + Sold(uint256）
+    + Shipped(uint256）
+    + Received(uint256）
+    + Purchased(uint256）
+
+    --modifiers--
+    + verifyCaller(address)
+    + paidEnough(uint256)
+    + checkValue(uint256)
+
+    + harvested(uint256)
+    + processed(uint256)
+    + packed(uint256)
+    + forSale(uint256)
+    + sold(uint256)
+    + shipped(uint256)
+    + received(uint256)
+    + purchased(uint256)
+
+    --properties--
+    + uint256 upc
+    + uint256 sku
+    + items: mapping(uint256 => Item)
+    + itemsHistory: mapping(uint256 => string[])
+    + {static} defaultState: State
+
+    --functions--
+    + kill()
+
+    + harvestItem(uint256, address, string...) onlyFarmer
+    + processItem(uint256) harvested(...) onlyFarmer verifyCaller(...)
+    + packItem(uint256) processed(...) onlyFarmer verifyCaller(...)
+    + sellItem(uint256) packed(...) onlyFarmer verifyCaller(...)
+    + buyItem(uint256) onlyDistributor forSale(...) paidEnough(...) checkValue(...)
+    + shipItem(uint256) sold(...) onlyFarmer verifyCaller(...)
+    + receiveItem(uint256) shipped(...) onlyRetailer
+    + purchaseItem(uint256) received(...) onlyConsumer paidEnough(...) checkValue(...)
+
+    + fetchItemBufferOne(uint256): uint256, uint256, address, address, string...
+    + fetchItemBufferTwo(uint256): uint256, uint256, uint256, string, uint256, State, address...
+}
+
+ConsumerRole --o Role : property
+DistributorRole --o Role : property
+FarmerRole --o Role : property
+RetailerRole --o Role : property
+
+ConsumerRole ..o Roles : using
+DistributorRole ..o Roles : using
+FarmerRole ..o Roles : using
+RetailerRole ..o Roles : using
+
+Roles --* Role: struct
+
+SupplyChain --|> ConsumerRole
+SupplyChain --|> DistributorRole
+SupplyChain --|> FarmerRole
+SupplyChain --|> RetailerRole
+SupplyChain --|> Ownable
+
+SupplyChain --* State: enum
+SupplyChain --* Item: property
+
+@enduml
