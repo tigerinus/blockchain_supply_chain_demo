@@ -2,111 +2,34 @@
 
 This repository containts an Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer. The user story is similar to any commonly used supply chain process. A Seller can add items to the inventory system stored in the blockchain. A Buyer can purchase such items from the inventory system. Additionally a Seller can mark an item as Shipped, and similarly a Buyer can mark an item as Received.
 
-The DApp User Interface when running should look like...
+## UML
 
-![truffle test](images/ftc_product_overview.png)
+### Activity Diagram
 
-![truffle test](images/ftc_farm_details.png)
+![activity](https://www.plantuml.com/plantuml/svg/tLVHZk8m37pdA_p8_iBjm-wlc6IwZKYJAdRW-FihD5MYMnOET2VrjYyeyKpi6IUMU1Vbf7dmn4RTmUbfap22TKFJ9qUdfgVjEHR3syjbqx20jZsd0qJdBTVHjkCq8BszaFO8j3r1fbZvVf19O0K57Caf1eeTvT6yDWWN9io0e2Jxt0HcV4a7EqVWppM4M5CWs4tvTLrJvvYYWSZzEfTuKnuvgOclCYfBoB3tI6SGnUG-N61Fjv9LXNcqh9Y5Yh9cgVf_yw78WQs8wtwqljHLzQVoMbgbjF17BMUpVzRlAd0bVazQLcssmFldpPxKhS3f5ZKcP_1bExgOIDXZnGtPvLFjXtMYoUsonZzioYBmTaz6TfOGOlxeBupcXB_VaNWCIEGiQQGTocMuHsg4t-LfuY0T4Wqnu3J1o-NwyXP8zFPQK10iSJWHVXg8bFDsRFQaiHQmsgVSk_7ffopHhsHadcMCgvwP2GRkWEfrWhBp3xXTD7x2tt7iwKVscR2KV8im8ujQ-_flJHrpCZrBuwg9GVA01oRVKkh_FlsAyifxPFgLrjwOVulLtsi88jZv_yPbzJujy-1_0G00)
 
-![truffle test](images/ftc_product_details.png)
+### Sequence Diagram
 
-![truffle test](images/ftc_transaction_history.png)
+![sequence](https://www.plantuml.com/plantuml/svg/RSjBgi9048NXUQsYDt0tS0UIhLGgHzBOZxOU0NSlA4B4dbMTdsynP_Me9HdkWIQWAsk5fhzBUb__QMSzO3ufGxl0R5PORfFPK0fjsLpp6jw_sXgFar0uv_8oUnxqUSz08SW7I7gp-64ZL7Osq8AsHItq1000)
 
+### State Diagram
 
-## Getting Started
+![state](https://www.plantuml.com/plantuml/svg/dP91ImCn48Nl-HKvjj85puAbq2fu4psAI4ncky5iiaoIIX7_kzbcqcqb23MNNVBcVRoPoSe7WI7sXgUV08mTFhmLs0E-kKyBYdynnjDvkNfjLBffbft07VYGf1lkhDdV7wfprL5hK6-xq2m7T1Ay1tLQk-0xGDtkry8Om9bBjTfcwM4ppwHYd4X2VboEoQx2Q1q-2mCNGBxBJ9Js0VLx36uQ34-7a3GRxmn5t4prYvH2gplhuhQR3UXKbE4HjOGvoo57LsEW3GdGwM40zP-4245e0-VnY4Vn42JeNS4_aM52I6Tzx7yXo5GOGqJPYUD6rsJveyc4ftSncaurVikl6QDLrqLQUqKfopoNbgEKrr2vf-bM9Egogb7BTN45LiNUi1y0)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Classes (Data Model) Diagram
 
-### Prerequisites
+![class](https://www.plantuml.com/plantuml/svg/bLVDZjis4BxhANXS9siV2hG70rcaJHfaWI89TeDUYgAWfR5DM185_ZWmqiszhz1doJlb5KgAub0UMb6TGrRazysduJT3Ydwf3LV6DZKhQwvrKV2DDegN9epPWwn1iyy5S_-MIxQrRMc4RBKRz7Eh5HEj0TNosZttKryOhweR7tZhdnHelHW01OqymcLippK1rcmZPLqy5GMqHfXJdyoGotEs0Qv0hLd3kqwqkviXYhsuwyCMFgu8YtZb4hODg3u-BGQEJXTNyXnfFrSLL55lGS07luGn7DKQMOcj03KIb6rzYd4tYTafsO4o0f2wPEL0q-jW-Sh_N-IsexRGg4py2hYRp0Xd2Gqy1Qrqwa3p_CB-kYGHiL3977wAdhyMsYYniKREsPwOr7cANsr-2ftplqBcDIL8-jDLkCGXoT5Q98IK8m5J5I4CKfGtNCrlWq2YfKZGrLK8KJC5s79rNVi7rKdR2PmIeMPZTkWp2QOM8qZTVG33HJtdBz9oXn6ytkCGD-ko2hHhV4RbAQSpmZWXwZQIazzK8dSSuTppzvzQlgbXsksFYhTw2yeHGUczwAB8BVk_thhGMMEb4hkUjuwottDL1aNaejdl2K3SIujOfCm6ZfbQw8YAda-Jm-VMDkpHS9E-jc-vEe8sK0tZ3qgMZfx6l3pWu8rKZxo6OVGewmWykZTrI7k04iGnILXLxhcNJ5_yUmCDvg0FzjlNVwrepGy__ZJCsQwaSy7T-zTk_jn5NoFH-kqx0x_Z3JZOdwJjBaFlswrK3VSbdIRzvd1ZA_WEGxQxYvHEoSgMncL85XQHTzA0deZwe4G9MQ1mDlfwUgJ_6-R7NxtS43miScYuhX08D-MZxJftqTXpqUB63FjokQJzT3Da-kthFxIr28HTHkUnuGWGUe_IiGrp03kI8jYSvz2mD3msS7L7K69xUiLhUgRvGd5H_TfAkzj7gOYKUoWFl_FQGa86Q4_jGZLg5WB1AZAx3KRHQPriIdF193gjq2BoFceGdfVfk4H_1ehVlMH67-oePtMwtaV2Yxl-K5YCMM-5DbATBfB39ldZpnZmMHjkHFd4AjXoMvj-Ewp3QHSpnXCR4pw8khwXrV1vn5VXr-HsUEDgjQANZbIkSUHYL5mITDv73XmNzqmZ2b-XeQ6kYOPJlK9WOq_dyUHIYytM2wQs3sDize2FckvSLCjwFYNId4IXRsGK8LSJx5mIDKYbCFpXDBkKkDV0b7il-elT-azj2wY-PjWsUV_aZNHPyECdEI587e9EcWZDZYzoB_17zzcFvELIilvX7MyxfoALTfeJwZC91-Ud2IIBrIemjADOxTP0SyWPcC4b4Dy_0HTXk5m-wu6rTywMfYX67pI7_dt7ncdcACao9wGaSmnpl8J6-ovDwHaRpZ5_TSimtpDZarz2MzccBlu3)
 
-Please make sure you've already installed ganache-cli, Truffle and enabled MetaMask extension in your browser.
+## Libraries
 
-```
-Give examples (to be clarified)
-```
+- `@truffle/contract`
 
-### Installing
+  need this to interact with smart contract deployed to the blockchain network.
 
-> The starter code is written for **Solidity v0.4.24**. At the time of writing, the current Truffle v5 comes with Solidity v0.5 that requires function *mutability* and *visibility* to be specified (please refer to Solidity [documentation](https://docs.soliditylang.org/en/v0.5.0/050-breaking-changes.html) for more details). To use this starter code, please run `npm i -g truffle@4.1.14` to install Truffle v4 with Solidity v0.4.24. 
+- `@truffle/hdwallet-provider`
 
-A step by step series of examples that tell you have to get a development env running
+  need this to interact with wallet extension, e.g. Metamask, installed for browser or browsers that has built-in wallet.
 
-Clone this repository:
+## IPFS
 
-```
-git clone https://github.com/udacity/nd1309/tree/master/course-5/project-6
-```
-
-Change directory to ```project-6``` folder and install all requisite npm packages (as listed in ```package.json```):
-
-```
-cd project-6
-npm install
-```
-
-Launch Ganache:
-
-```
-ganache-cli -m "spirit supply whale amount human item harsh scare congress discover talent hamster"
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/ganache-cli.png)
-
-In a separate terminal window, Compile smart contracts:
-
-```
-truffle compile
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/truffle_compile.png)
-
-This will create the smart contract artifacts in folder ```build\contracts```.
-
-Migrate smart contracts to the locally running blockchain, ganache-cli:
-
-```
-truffle migrate
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/truffle_migrate.png)
-
-Test smart contracts:
-
-```
-truffle test
-```
-
-All 10 tests should pass.
-
-![truffle test](images/truffle_test.png)
-
-In a separate terminal window, launch the DApp:
-
-```
-npm run dev
-```
-
-## Built With
-
-* [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts
-* [IPFS](https://ipfs.io/) - IPFS is the Distributed Web | A peer-to-peer hypermedia protocol
-to make the web faster, safer, and more open.
-* [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
-
-
-## Authors
-
-See also the list of [contributors](https://github.com/your/project/contributors.md) who participated in this project.
-
-## Acknowledgments
-
-* Solidity
-* Ganache-cli
-* Truffle
-* IPFS
+InterPlanetary File System (IPFS) is a peer-to-peer hypermedia protocol for storing, sharing, and routing data in the Internet. Integration with IPFS will be done in future.
