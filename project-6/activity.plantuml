@@ -1,0 +1,125 @@
+@startuml activity
+repeat
+    switch (action?)
+    case (harvest)
+    if (farmer?) then (yes)
+        : create new item of upc;
+        : increment sku;
+        : item harvested;
+    else (no)
+        end
+    endif
+    case (process)
+    if (farmer?) then (yes)
+        if (item of upc is harvested?) then (yes)
+            if (is caller the original farmer?) then (yes)
+                : update item status;
+                : item processed;
+            else (no)
+                end
+            endif
+        else(no)
+            end
+        endif
+    else (no)
+        end
+    endif
+    case (pack)
+    if (farmer?) then (yes)
+        if (item of upc is processed?) then (yes)
+            if (is caller the original farmer?) then (yes)
+                : update item status;
+                : item packed;
+            else (no)
+                end
+            endif
+        else(no)
+            end
+        endif
+    else (no)
+        end
+    endif
+    case (sell)
+    if (farmer?) then (yes)
+        if (item of upc is packed?) then (yes)
+            if (is caller the original farmer?) then (yes)
+                : update item status;
+                : update item price;
+                : item for sale;
+            else (no)
+                end
+            endif
+        else(no)
+            end
+        endif
+    else (no)
+        end
+    endif
+    case (buy)
+    if (distributor?) then (yes)
+        if (item of upc for sale?) then (yes)
+            if (paid enough for item of upc?) then (yes)
+                : update item status;
+                : update item owner id to be caller;
+                : update item distributor to be caller;
+                : transfer money to farmer;
+                : item sold;
+                : send any excess money back to caller;
+            else (no)
+                end
+            endif
+        else(no)
+            end
+        endif
+    else (no)
+        end
+    endif
+    case (ship)
+    if (farmer?) then (yes)
+        if (item of upc is sold?) then (yes)
+            if (is caller the original farmer?) then (yes)
+                : update item status;
+                : item shipped;
+            else (no)
+                end
+            endif
+        else(no)
+            end
+        endif
+    else (no)
+        end
+    endif
+    case (receive)
+    if (retailer?) then (yes)
+        if (item of upc is shipped?) then (yes)
+            : update item status;
+            : update item owner id to be caller;
+            : update item retailer to be caller;
+            : item received;
+        else(no)
+            end
+        endif
+    else (no)
+        end
+    endif
+    case (purchase)
+    if (consumer?) then (yes)
+        if (item of upc for received?) then (yes)
+            if (paid enough for item of upc?) then (yes)
+                : update item status;
+                : update item owner id to be caller;
+                : update item consumer id to be caller;
+                : transfer money to retailer;
+                : item purchased;
+                : send any excess money back to caller;
+            else (no)
+                end
+            endif
+        else(no)
+            end
+        endif
+    else (no)
+        end
+    endif
+    endswitch
+    @enduml
