@@ -1,0 +1,45 @@
+@startuml state
+
+state farmer_owned {
+
+    [*]-down->harvested : onlyFarmer
+
+    harvested-right->processed: onlyFarmer, verifyCaller(originFarmerID)
+
+    processed-right->packed: onlyFarmer, verifyCaller(originFarmerID)
+
+    packed-right->forSale: onlyFarmer, verifyCaller(originFarmerID)
+}
+
+state distributor_owned {
+    forSale-down->sold: onlyDistributor, paidEnough(productPrice)
+
+
+    sold-left->shipped: onlyFarmer, verifyCaller(originFarmerID)
+}
+
+state retailer_owned {
+    shipped-down->received: onlyRetailer
+}
+
+state consumer_owned {
+    received-down->purchased: onlyConsumer, paidEnough(productPrice)
+}
+
+harvested: productPrice = 0
+
+processed: productPrice = 0
+
+packed: productPrice = 0
+
+forSale: productPrice > 0
+
+sold: productPrice > 0
+
+shipped: productPrice > 0
+
+received: productPrice > 0
+
+purchased: productPrice > 0
+
+@enduml
